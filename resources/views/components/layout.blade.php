@@ -9,7 +9,7 @@
     </style>
     <script src=""></script>
     <x-navbar />
-    <body class="main">
+    <body>
         <main>
             {{ $slot }}
         </main>
