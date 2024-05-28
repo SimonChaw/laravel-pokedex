@@ -47,9 +47,12 @@ class PokemonController extends Controller
         //dd($request->all());
     }
 
+    
     public function destroy(int $id) {
         $deleteMon = Pokemon::find($id);
         $deleteMon->delete();
-        return view('pokemon.show');
+        return redirect("/pokemon"); // Redirecting as if user made a GET request.
+            // Don't use "return view", because it keeps the same URL while performing action.
+                // This breaks functionality.
     }
 }
