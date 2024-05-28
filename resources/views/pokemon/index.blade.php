@@ -2,6 +2,21 @@
 
 <x-layout>
     <h5>Here are our Pokémon!</h5>
+
+    
+    <!--
+    <button type="button" class="btn btn-primary" data-toggle="button"
+    aria-pressed="false" autocomplete="off" style="float: right;">
+        Delete?
+    </button>
+
+    <div class="btn-group-toggle" data-toggle="buttons" style="float: right;">
+        <label class="btn btn-secondary active">
+            <input type="checkbox" checked autocomplete="off"> Select Pokemon
+        </label>
+    </div>
+    -->
+
     <div class="row grid gap-0 column-gap-2">
     @foreach($pokemon as $mon)
         <div class="col-2 card">

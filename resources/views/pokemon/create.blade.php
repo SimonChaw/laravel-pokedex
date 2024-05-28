@@ -25,7 +25,7 @@
         <div class="mb-3">
             <label for="description" class="form-label">Type</label>
             <select class="form-select" aria-label="Default select example" id="type" name="type" value="{{ old('type') }}">
-                <option value="" {{ old('type') == "" ? "selected" : "" }}>Select A Type</option>
+                <option value="" {{ old('type') == "" ? "selected" : "" }}>Select a Type</option>
                 @foreach(\App\Models\Pokemon::TYPES as $type)
                     <option value="{{ $type }}" {{ old('type') == $type ? "selected" : "" }}> {{ $type }}</option>
                 @endforeach

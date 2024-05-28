@@ -11,5 +11,7 @@ class Pokemon extends Model
 
     protected $guarded = [];
 
-    public const TYPES = ["Fire", "Water", "Grass", "Rock", "Ground"];
+    public const TYPES = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice",
+                        "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug",
+                        "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"];
 }

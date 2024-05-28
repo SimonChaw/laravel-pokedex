@@ -16,3 +16,4 @@ Route::get('/pokemon/{id}', [PokemonController::class, 'show']);
 Route::post('/pokemon', [PokemonController::class, 'store']);
     // Post is used for creating resources.
     // Put for updates.
+Route::delete('/pokemon/{id}', [PokemonController::class, 'destroy']);

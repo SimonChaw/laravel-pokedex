@@ -24,21 +24,21 @@ class DatabaseSeeder extends Seeder
         Pokemon::create([
             'name' => 'Squirtle',
             'description' => 'Likes berries.',
-            'type' => 'water',
+            'type' => 'Water',
             'url' => 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png'
         ]);
 
         Pokemon::create([
             'name' => 'Charmander',
             'description' => 'Likes arson.',
-            'type' => 'fire',
+            'type' => 'Fire',
             'url' => 'https://assets.pokemon.com/assets/cms2/img/pokedex/full//004.png'
         ]);
 
         Pokemon::create([
             'name' => 'Bulbasaur',
             'description' => 'Likes fruits.',
-            'type' => 'grass',
+            'type' => 'Grass',
             'url' => 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png'
         ]);
 
