@@ -17,6 +17,10 @@
                 @method("DELETE")
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+
+            <!-- GO to "edit" page -->
+            <!-- <a href="{ "/pokemon/" . $mon->id . "/edit"}}" class="btn btn-success">Edit</a> -->
+            <a href="/pokemon/{{ $mon->id }}/edit" class="btn btn-success">Edit</a>
         </div>
     </div>
 </x-layout>
