@@ -15,6 +15,7 @@ class TrainersTest extends TestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
         $this->trainer = Trainer::factory()->create();
     }
 
@@ -23,7 +24,7 @@ class TrainersTest extends TestCase
         $response = $this->get('/trainers');
 
         $response->assertViewIs('trainers.index');
-        $response->assertViewHas('trainers', Trainer::all());
+        $response->assertViewHas('trainers', Trainer::all(), 'The trainers.index view should have a collection of all trainers passed to it.');
     }
 
     public function test_user_can_view_individual_trainer()
@@ -31,7 +32,7 @@ class TrainersTest extends TestCase
         $response = $this->get("/trainers/{$this->trainer->id}");
 
         $response->assertViewIs('trainers.show');
-        $response->assertViewHas('trainer', $this->trainer);
+        $response->assertViewHas('trainer', $this->trainer, 'The show view should have a variable named trainer passed to it.');
     }
 
     public function test_user_can_view_create_page()
@@ -48,7 +49,7 @@ class TrainersTest extends TestCase
         $trainer = Trainer::latest()->first();
 
         $this->assertNotEquals($this->trainer->id, $trainer->id, "Trainer was not properly created.");
-        $response->assertRedirect("/trainers/{$this->trainer->id}");
+        $response->assertRedirect("/trainers/{$this->trainer->id}", );
     }
 
     public function test_user_can_view_edit_page()
@@ -56,7 +57,7 @@ class TrainersTest extends TestCase
         $response = $this->get("/trainers/{$this->trainer->id}/edit");
 
         $response->assertViewIs('trainers.edit');
-        $response->assertViewHas('trainer', $this->trainer);
+        $response->assertViewHas('trainer', $this->trainer, 'The trainers.edit view should have a collection of all trainers passed to it.');
     }
 
     public function test_user_can_update_trainer()
