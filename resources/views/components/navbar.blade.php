@@ -6,8 +6,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" aria-current="page" href="#">Pokemon</a>
+        <a @class([
+          'nav-link',
+          'active' => Request::path() == "/"
+        ]) aria-current="page" href="/">Home</a>
+        <a @class([
+          "nav-link",
+          'active' => Request::path() == "pokemon"
+        ]) aria-current="page" href="/pokemon">Pokemon</a>
       </div>
     </div>
   </div>
