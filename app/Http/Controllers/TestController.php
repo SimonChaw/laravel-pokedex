@@ -29,12 +29,13 @@ class TestController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required|max:100',
-            'url' => 'required|url:png,jpg,jpeg,gif,webp',
+            'url' => 'required|url:https',
             'type' => 'required'
         ]);
 
         $inputMon = new Pokemon;
-        // $inputMon->fill($request->only(['name', 'description', 'url', 'type']));
+        // $inputMon->create($request->only(['name', 'description', 'url', 'type']));
+            // Doesn't require saving.
         $inputMon->name = $request->input('name');
         $inputMon->description = $request->input('description');
         $inputMon->url = $request->input('url');
