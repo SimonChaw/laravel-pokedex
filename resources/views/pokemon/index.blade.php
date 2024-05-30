@@ -17,6 +17,10 @@
     </div>
     -->
 
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="/pokemon/create" class="btn btn-success" allign=>Create</a>
+    </div>
+    
     <div class="row grid gap-0 column-gap-2">
     @foreach($pokemon as $mon)
         <div class="col-2 card">
