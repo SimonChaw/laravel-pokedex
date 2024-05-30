@@ -17,14 +17,14 @@
     </div>
     -->
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="/pokemon/create" class="btn btn-success" allign=>Create</a>
+    <div class="row py-4">
+        <a href="/pokemon/create" class="col-3 btn btn-success mx-auto" allign=>Create New Pokemon</a>
     </div>
     
-    <div class="row grid gap-0 column-gap-2">
+    <div class="row grid gap-0 column-gap-2 justify-content-center">
     @foreach($pokemon as $mon)
-        <div class="col-2 card">
-            <img src="{{ $mon->url }}" class="card-img-top" alt="...">
+        <div class="col-3 card">
+            <img src="{{ $mon->url }}" class="mx-auto card-img-top p-4" style="width:auto; height:150px;" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ $mon->name }}</h5>
                 <p class="card-text">{{ $mon->description }}</p>

@@ -1,8 +1,8 @@
 <!-- INDIVIDUAL pokemon pages-->
 
 <x-layout>
-    <div class="col-2 card">
-        <img src="{{ $mon->url }}" class="card-img-top" alt="...">
+    <div class="col-4 card mx-auto">
+        <img src="{{ $mon->url }}" class="card-img-top p-4 mx-auto" alt="..." style="width: 200px; height: auto;">
         <div class="card-body">
             <h5 class="card-title">{{ $mon->name }}</h5>
             <p class="card-text">{{ $mon->description }}</p>
