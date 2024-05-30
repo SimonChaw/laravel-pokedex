@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TrainerController;
 use App\Models\Pokemon;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -27,3 +29,7 @@ Route::get('/pokemon/{id}/edit', [PokemonController::class, 'edit']); // Gives y
 Route::put('/pokemon/{id}', [PokemonController::class, 'update']); // Actually does the update
 
 //Check https://laravel.com/docs/11.x/controllers#restful-supplementing-resource-controllers
+
+
+Route::get('/trainers', [TrainerController::class, 'index']);
+    //Route to call index method in Controller class.
