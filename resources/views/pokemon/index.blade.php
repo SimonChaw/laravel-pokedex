@@ -3,20 +3,6 @@
 <x-layout>
     <h5>Here are our Pokémon!</h5>
 
-    
-    <!--
-    <button type="button" class="btn btn-primary" data-toggle="button"
-    aria-pressed="false" autocomplete="off" style="float: right;">
-        Delete?
-    </button>
-
-    <div class="btn-group-toggle" data-toggle="buttons" style="float: right;">
-        <label class="btn btn-secondary active">
-            <input type="checkbox" checked autocomplete="off"> Select Pokemon
-        </label>
-    </div>
-    -->
-
     <div class="row py-4">
         <a href="/pokemon/create" class="col-3 btn btn-success mx-auto" allign=>Create New Pokemon</a>
     </div>
