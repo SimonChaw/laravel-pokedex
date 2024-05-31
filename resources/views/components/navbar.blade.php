@@ -14,6 +14,10 @@
           "nav-link",
           'active' => Request::path() == "pokemon"
         ]) aria-current="page" href="/pokemon">Pokemon</a>
+        <a @class([
+          "nav-link",
+          'active' => Request::path() == "trainers"
+        ]) aria-current="page" href="/trainers">Trainers</a>
       </div>
     </div>
   </div>

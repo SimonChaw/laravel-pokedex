@@ -29,6 +29,7 @@ class PokemonController extends Controller
     public function create() {
         return view('pokemon.create');
     }
+
     // Function to actually create pokemon with custom values:
         // Holds requirements.
     public function store(Request $request) {
