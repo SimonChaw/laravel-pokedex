@@ -9,7 +9,7 @@
 
     <div class="row grid gap-0 column-gap-2 justify-content-center">
         @foreach($trainers as $trainer)
-            <div class="card mb-3" style="max-width: 540px;">
+            <div class="card mb-3" style="max-width: 540px">
                 <div class="row no-gutters">
                 <div class="col-md-4">
                     <img src="{{ $trainer->url }}" class="card-img" alt="...">
