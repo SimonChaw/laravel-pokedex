@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pokemon;
+use App\Models\Items;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Pokemon;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,11 +17,25 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         
+        /*
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        */
 
+        Items::create([
+            'name' => 'Potion',
+            'quantity' => 3,
+            'trainer_id' => 5
+        ]);
+        Items::create([
+            'name' => 'Elixir',
+            'quantity' => 2,
+            'trainer_id' => 5
+        ]);
+
+        /*
         Pokemon::create([
             'name' => 'Squirtle',
             'description' => 'Likes berries.',
@@ -41,7 +56,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Grass',
             'url' => 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png'
         ]);
-
+        */
         //Pokemon::factory(100)->create();
     }
 }

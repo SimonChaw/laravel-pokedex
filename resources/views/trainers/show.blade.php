@@ -20,6 +20,7 @@
                     </form>
 
                     <a href="/trainers/{{ $trainer->id }}/edit" class="btn btn-success">Edit</a>
+                    <a href="/trainers/{{ $trainer->id }}/items" class="btn btn-primary">Items</a>
                 </div>
             </div>
             </div>
