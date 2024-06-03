@@ -37,14 +37,17 @@ class ItemController extends Controller
             'trainer_id' => $trainer_id
         ];
         
-        $data = $request->only(['name', 'quantity']);
-        $data['trainer_id'] = $trainer_id;
+        // Alt way of doing what's above:
+        /*$data = $request->only(['name', 'quantity']);
+        $data['trainer_id'] = $trainer_id;*/
 
         //$saveItem = Items::updateOrCreate($data); // variable only needed for a single-view
-        Items::updateOrCreate(
-            ['name'=>$data['name']],
-            ['quantity'=> DB::raw("quantity + {$data['quantity']}")]
+        $item = Items::firstOrCreate(
+            [ 'trainer_id' => $data['trainer_id'], 'name' => $data['name'] ],
+            [ 'quantity' => 0 ]
         );
+
+        $item->increment('quantity', $data['quantity']);
             // however, this is still saving even without the variable.
 
         //return redirect("/trainers/{$trainer_id}/items/{$saveItem->id}");
@@ -53,7 +56,7 @@ class ItemController extends Controller
 
     public function edit(int $trainer_id, int $id) {
         $editItem = Items::where('trainer_id', $trainer_id)->find($id);
-        return view('items.edit', ['editItem' => $editItem, 'trainer_id' => $trainer_id, 'id' => $id]);
+        return view('items.edit', ['editItem' => $editItem, 'trainer_id' => $trainer_id]);
     }
 
     public function update(int $trainer_id, int $id, Request $request) {
@@ -61,7 +64,7 @@ class ItemController extends Controller
             'quantity' => 'required|integer'
         ]);
         $updateItem = Items::where('trainer_id', $trainer_id)->find($id);
-        $updateItem->update($request->only(['name', 'quantity']));
+        $updateItem->update($request->only(['quantity']));
         //$updateMon->save();
         return redirect("/trainers/{$trainer_id}/items");
     }

@@ -1,5 +1,5 @@
 <x-layout>
-    <form method="POST" action="/trainers/{{ $trainer_id }}/items/{{ $id }}" class="col-6 mx-auto">
+    <form method="POST" action="/trainers/{{ $trainer_id }}/items/{{ $editItem->id }}" class="col-6 mx-auto">
         @csrf
         @method("PATCH")
         <div class="mb-3">
