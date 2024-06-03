@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Items;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -39,7 +40,12 @@ class ItemController extends Controller
         $data = $request->only(['name', 'quantity']);
         $data['trainer_id'] = $trainer_id;
 
-        $saveItem = Items::create($data);
+        //$saveItem = Items::updateOrCreate($data); // variable only needed for a single-view
+        Items::updateOrCreate(
+            ['name'=>$data['name']],
+            ['quantity'=> DB::raw("quantity + {$data['quantity']}")]
+        );
+            // however, this is still saving even without the variable.
 
         //return redirect("/trainers/{$trainer_id}/items/{$saveItem->id}");
         return redirect("/trainers/{$trainer_id}/items");
