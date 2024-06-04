@@ -26,4 +26,14 @@
             </div>
         </div>
     </div>
+    <label>Add to {{ $trainer->name }}'s Team:</label>
+    <form method="POST", action="/trainers/{{ $trainer->id }}/add-mon">
+        @csrf
+        <input type="text" class="form-control" id="name" name="name"
+        placeholder="Pokemon name" style="width: 250px" value="{{ old('name') }}">
+        <input type="text" class="form-control" id="nickname" name="nickname"
+        placeholder="Pokemon nickname" style="width: 250px" value="{{ old('nickname') }}">
+        <button type="submit" class="btn btn-success">Enter</button>
+    </form>
+
 </x-layout>

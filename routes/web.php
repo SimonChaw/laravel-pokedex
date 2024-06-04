@@ -1,10 +1,11 @@
 <?php
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\PokemonTrainerController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TrainerController;
-use App\Models\Pokemon;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('home');
@@ -45,3 +46,6 @@ Route::patch('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'updat
     // (ONLY ALLOW FOR QUANTITY UPDATE)
     // If the quantity is 0, delete the item and return them to the main items page instead of the individual item.
 Route::delete('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'destroy']); // Remove an item from a trainer's inventory.
+
+
+Route::post('/trainers/{trainer_id}/add-mon', [PokemonTrainerController::class, 'addMon']);

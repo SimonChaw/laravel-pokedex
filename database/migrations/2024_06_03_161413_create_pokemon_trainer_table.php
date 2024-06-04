@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pokemon_trainer', function (Blueprint $table) {
+        Schema::create('pokemon_trainers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('trainer_id');
             $table->foreign('trainer_id')->references('id')->on('trainers');
+            $table->unsignedBigInteger('pokemon_id');
             $table->foreign('pokemon_id')->references('id')->on('pokemon');
             $table->string('nickname');
             $table->timestamps();
