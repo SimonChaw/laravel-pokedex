@@ -35,5 +35,22 @@
         placeholder="Pokemon nickname" style="width: 250px" value="{{ old('nickname') }}">
         <button type="submit" class="btn btn-success">Enter</button>
     </form>
-
+    <br>
+    <div class="row">
+        @foreach ($pokemon as $monDisplay)
+            <div class="col-lg-2 mb-4 d-flex align-items-stretch">
+                <div class="card w-100">
+                    <img src="{{ $monDisplay->url }}" class="mx-auto card-img-top p-4" style="width:auto; height:150px;" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ $monDisplay->pivot->nickname }} ({{ $monDisplay->name }})</h5>
+                        <p class="card-text flex-grow-1">{{ $monDisplay->description }}</p>
+                        <div>
+                            <a href="#" class="btn btn-primary">{{ $monDisplay->type }}</a>
+                            <a href="/pokemon/{{  $monDisplay->id }}" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>    
 </x-layout>

@@ -30,14 +30,16 @@ class TrainerController extends Controller
 
     public function show(int $id) {
         $showTrainer = Trainer::find($id);
-        // Method 1: Manual Joins & Queries
+
+        // METHOD 1: Manual Joins & Queries
         /*
         $pokemon = Pokemon::query()->join('pokemon_trainers', 'pokemon_trainers.pokemon_id', '=', 'pokemon.id')
         ->where('pokemon_trainers.trainer_id', $id)->get();
         */
 
-        // Method 2: using Model relationships
+        // METHOD 2: using Model relationships
         $pokemon = $showTrainer->pokemon;
+        
         return view('trainers.show', ['trainer' => $showTrainer, 'pokemon' => $pokemon]);
     }
 
