@@ -1,4 +1,4 @@
-<!-- INDIVIDUAL trainers -->
+<!-- INDIVIDUAL trainers and their teams -->
 
 <x-layout>
     <div class="row grid gap-0 column-gap-2 justify-content-center">
@@ -26,6 +26,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Pokemon card: -->
     <label>Add to {{ $trainer->name }}'s Team:</label>
     <form method="POST", action="/trainers/{{ $trainer->id }}/add-mon">
         @csrf
@@ -47,6 +49,42 @@
                         <div>
                             <a href="#" class="btn btn-primary">{{ $monDisplay->type }}</a>
                             <a href="/pokemon/{{  $monDisplay->id }}" class="btn btn-primary">View</a>
+                            <form method="POST" action="{{ "/trainers/" . $trainer->id . "/remove-mon/" . $monDisplay->pivot->id}}">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                                
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nameModal{{ $monDisplay->pivot->id }}">
+                                Edit name?
+                            </button>
+                          
+                            <!-- Modal -->
+                            <div class="modal fade" id="nameModal{{ $monDisplay->pivot->id }}" tabindex="-1" aria-labelledby="nameModal{{ $monDisplay->pivot->id }}Label" aria-hidden="{{ $errors->has("newNickname") ? "false" : "true" }}">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="nameModal{{ $monDisplay->pivot->id }}Label">Edit name?</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="POST" action="/trainers/{{$trainer->id}}/update-name/{{ $monDisplay->pivot->id }}" class="col-6 mx-auto">
+                                        @csrf
+                                        @method("PUT")
+                                        <div class="modal-body">
+                                            <input type="text" class="form-control" id="nickname" name="newNickname"
+                                            placeholder="Pokemon nickname" style="width: 250px" value="{{ old('newNickname', $monDisplay->pivot->nickname) }}">
+                                            @error('newNickname')
+                                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="Submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

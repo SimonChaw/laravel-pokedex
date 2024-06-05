@@ -39,6 +39,7 @@ class TrainerController extends Controller
 
         // METHOD 2: using Model relationships
         $pokemon = $showTrainer->pokemon;
+        //dd($pokemon);
         
         return view('trainers.show', ['trainer' => $showTrainer, 'pokemon' => $pokemon]);
     }

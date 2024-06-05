@@ -35,11 +35,20 @@ class PokemonTrainerController extends Controller
         return redirect("/trainers/{$trainer_id}");
     }
 
-    public function removeMon() {
-
+    public function removeMon(int $trainer_id, int $pivot_id) {
+        PokemonTrainer::find($pivot_id)->delete();
+        return redirect("/trainers/{$trainer_id}");
     }
 
-    public function updateName() {
-        
+    public function updateName(int $trainer_id, int $pivot_id, Request $request) {
+        $request->validate([
+            "newNickname" => 'required|string|min:3|max:20'
+        ]);
+        $updateName = PokemonTrainer::find($pivot_id);
+        $updateName->update([
+            'nickname' => $request->get(('newNickname'))
+        ]);
+            // Alt way to do the above: $updateName->update($request->only('newNickname'));
+        return redirect("/trainers/{$trainer_id}");
     }
 }

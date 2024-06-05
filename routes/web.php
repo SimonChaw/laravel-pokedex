@@ -45,7 +45,13 @@ Route::get('/trainers/{trainer_id}/items/edit/{id}', [ItemController::class, 'ed
 Route::patch('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'update']); // Modifies the existing item.
     // (ONLY ALLOW FOR QUANTITY UPDATE)
     // If the quantity is 0, delete the item and return them to the main items page instead of the individual item.
+    // PATCH is used instead of PUT because you're only editing 1 value in the table.
 Route::delete('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'destroy']); // Remove an item from a trainer's inventory.
 
-
+// TEAMS' ROUTES:
 Route::post('/trainers/{trainer_id}/add-mon', [PokemonTrainerController::class, 'addMon']);
+Route::delete('/trainers/{trainer_id}/remove-mon/{pivot_id}', [PokemonTrainerController::class, 'removeMon']);
+    // This link exists because you can't use the same action (get/post/delete) on the same route.
+    // The link doesn't even need to be attached to a view that exists. It happens in the background.
+    // Needs pivot_id because removeMon method asks for that as a 2nd argument as well.
+Route::put('/trainers/{trainer_id}/update-name/{pivot_id}', [PokemonTrainerController::class, 'updateName']);
