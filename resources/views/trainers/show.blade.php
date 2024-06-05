@@ -42,7 +42,11 @@
         @foreach ($pokemon as $monDisplay)
             <div class="col-lg-2 mb-4 d-flex align-items-stretch">
                 <div class="card w-100">
-                    <img src="{{ $monDisplay->url }}" class="mx-auto card-img-top p-4" style="width:auto; height:150px;" alt="...">
+                    <p class="flex-grow-1"></p>
+                    <p class="flex-grow-1"></p>
+                    <p class="flex-grow-1"></p>
+                    <img src="{{ $monDisplay->url }}" class="mx-auto card-img-top p-4" style="width:200px; height:auto;" alt="...">
+                    
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $monDisplay->pivot->nickname }} ({{ $monDisplay->name }})</h5>
                         <p class="card-text flex-grow-1">{{ $monDisplay->description }}</p>
