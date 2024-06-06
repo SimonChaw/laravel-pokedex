@@ -29,29 +29,32 @@
 
     <!-- Pokemon card: -->
     <label>Add to {{ $trainer->name }}'s Team:</label>
-    <form method="POST", action="/trainers/{{ $trainer->id }}/add-mon">
+    <form method="POST" action="/trainers/{{ $trainer->id }}/add-mon">
         @csrf
         <input type="text" class="form-control" id="name" name="name"
         placeholder="Pokemon name" style="width: 250px" value="{{ old('name') }}">
         <input type="text" class="form-control" id="nickname" name="nickname"
         placeholder="Pokemon nickname" style="width: 250px" value="{{ old('nickname') }}">
         <button type="submit" class="btn btn-success">Enter</button>
+        @error('team_limit')
+            <div class="alert alert-danger mt-2">{{ $message }}</div>
+        @enderror
     </form>
     <br>
     <div class="row">
         @foreach ($pokemon as $monDisplay)
-            <div class="col-lg-2 mb-4 d-flex align-items-stretch">
+            <div class="col-lg-4 mb-4 d-flex align-items-stretch">
                 <div class="card w-100">
-                    <p class="flex-grow-1"></p>
-                    <p class="flex-grow-1"></p>
-                    <p class="flex-grow-1"></p>
-                    <img src="{{ $monDisplay->url }}" class="mx-auto card-img-top p-4" style="width:200px; height:auto;" alt="...">
+
+                    <img src="{{ $monDisplay->url }}" class="mx-auto card-img-top p-4" style="width:auto; height:150px;" alt="...">
                     
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $monDisplay->pivot->nickname }} ({{ $monDisplay->name }})</h5>
                         <p class="card-text flex-grow-1">{{ $monDisplay->description }}</p>
                         <div>
-                            <a href="#" class="btn btn-primary">{{ $monDisplay->type }}</a>
+                            <button @style([ "background-color:" . \App\Models\Pokemon::typeColor($monDisplay->type), "color:white"])                                type="submit" class="btn">
+                                {{ $monDisplay->type }}
+                            </button>
                             <a href="/pokemon/{{  $monDisplay->id }}" class="btn btn-primary">View</a>
                             <form method="POST" action="{{ "/trainers/" . $trainer->id . "/remove-mon/" . $monDisplay->pivot->id}}">
                                 @csrf

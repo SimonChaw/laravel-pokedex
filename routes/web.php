@@ -23,6 +23,7 @@ Route::delete('/pokemon/{id}', [PokemonController::class, 'destroy']); // Destro
 // Edit pokemon:
 Route::get('/pokemon/{id}/edit', [PokemonController::class, 'edit']); // Gives you "edit" page.
 Route::put('/pokemon/{id}', [PokemonController::class, 'update']); // Actually does the update
+//Route::get('/pokemon/finder', [PokemonController::class, 'finder']);
 //Check https://laravel.com/docs/11.x/controllers#restful-supplementing-resource-controllers
 
 //TRAINERS!
@@ -48,7 +49,7 @@ Route::patch('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'updat
     // PATCH is used instead of PUT because you're only editing 1 value in the table.
 Route::delete('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'destroy']); // Remove an item from a trainer's inventory.
 
-// TEAMS' ROUTES:
+// TEAMS!
 Route::post('/trainers/{trainer_id}/add-mon', [PokemonTrainerController::class, 'addMon']);
 Route::delete('/trainers/{trainer_id}/remove-mon/{pivot_id}', [PokemonTrainerController::class, 'removeMon']);
     // This link exists because you can't use the same action (get/post/delete) on the same route.
