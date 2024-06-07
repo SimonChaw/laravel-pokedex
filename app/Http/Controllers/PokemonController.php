@@ -9,11 +9,64 @@ use Illuminate\Testing\Constraints\SoftDeletedInDatabase;
 class PokemonController extends Controller
 {
     // Function to show all available Pokemon:
-    public function index() {
-        $allMon = Pokemon::all();
-        //dd($pokemon);
+    public function index(Request $request) {
+        $filterQuery = $request->get('name');
+        $typeQuery = $request->get('type');
+
+        if($filterQuery===null && $typeQuery===null)
+        {
+            $filteredMon = Pokemon::all();
+        }
+        else
+        {
+            // Method 1 - Good programmer :-)
+            /*
+            $query = Pokemon::query();
+
+            if ($filterQuery) {
+                $query->where('name', 'LIKE', "%{$filterQuery}%");
+            }
+
+            if ($typeQuery) {
+                $query->where('type', $typeQuery);
+            }
+
+            $filteredMon = $query->get();
+            */
+
+            // METHOD 2 - BIG BOY MODE
+            /*
+            In this example, we use the 'when' function of Laravel's query builder.
+            This allows us to pass two arguements
+            The first arguement determines if we even want to affect the query
+            The second arguement is a function that alters the query
+            So in this case, if the filterQuery variable is truthy, we add a where condition
+            The same for typeQuery.
+            $filteredMon = Pokemon::query()
+                ->when($filterQuery, fn($q) => $q->where('name', 'LIKE', "%{$filterQuery}%"))
+                ->when($typeQuery, fn($q) => $q->where('type', $typeQuery))
+                ->get();
+                */
+
+            // Method 3 - A gerbel wrote this (spastic chimp style)
+            if($filterQuery!=null && $typeQuery===null)
+            {
+                // SELECT * FROM pokemon WHERE name LIKE "Bulba%"
+                $filteredMon = Pokemon::query()->where('name', 'LIKE', "%" . $filterQuery . "%")->get();
+            }
+            else if($typeQuery!=null && $filterQuery===null)
+            {
+                $filteredMon = Pokemon::query()->where('type', $typeQuery)->get();
+            }
+            else
+            {
+                $filteredMon = Pokemon::query()->where('name', 'LIKE', "%" . $filterQuery . "%")->where('type', $typeQuery)->get();
+            }
+            
+        }
         return view('pokemon.index', [
-            'pokemon' => $allMon
+            'pokemon' => $filteredMon,
+            'lastSearch' => $filterQuery
         ]);
     }
 

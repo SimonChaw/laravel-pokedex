@@ -1,10 +1,11 @@
 <?php
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\PokemonTrainerController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TrainerController;
-use App\Models\Pokemon;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('home');
@@ -22,6 +23,7 @@ Route::delete('/pokemon/{id}', [PokemonController::class, 'destroy']); // Destro
 // Edit pokemon:
 Route::get('/pokemon/{id}/edit', [PokemonController::class, 'edit']); // Gives you "edit" page.
 Route::put('/pokemon/{id}', [PokemonController::class, 'update']); // Actually does the update
+//Route::get('/pokemon/finder', [PokemonController::class, 'finder']);
 //Check https://laravel.com/docs/11.x/controllers#restful-supplementing-resource-controllers
 
 //TRAINERS!
@@ -44,4 +46,13 @@ Route::get('/trainers/{trainer_id}/items/edit/{id}', [ItemController::class, 'ed
 Route::patch('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'update']); // Modifies the existing item.
     // (ONLY ALLOW FOR QUANTITY UPDATE)
     // If the quantity is 0, delete the item and return them to the main items page instead of the individual item.
+    // PATCH is used instead of PUT because you're only editing 1 value in the table.
 Route::delete('/trainers/{trainer_id}/items/{id}', [ItemController::class, 'destroy']); // Remove an item from a trainer's inventory.
+
+// TEAMS!
+Route::post('/trainers/{trainer_id}/add-mon', [PokemonTrainerController::class, 'addMon']);
+Route::delete('/trainers/{trainer_id}/remove-mon/{pivot_id}', [PokemonTrainerController::class, 'removeMon']);
+    // This link exists because you can't use the same action (get/post/delete) on the same route.
+    // The link doesn't even need to be attached to a view that exists. It happens in the background.
+    // Needs pivot_id because removeMon method asks for that as a 2nd argument as well.
+Route::put('/trainers/{trainer_id}/update-name/{pivot_id}', [PokemonTrainerController::class, 'updateName']);
